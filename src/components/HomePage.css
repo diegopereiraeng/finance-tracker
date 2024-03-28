@@ -1,0 +1,48 @@
+.home-container {
+    font-family: Arial, sans-serif;
+    color: #f0f0f0;
+    background-color: #333;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h1, h2 {
+    color: #aad3fa;
+}
+
+.transaction-form {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.transaction-form select, .transaction-form input, .transaction-form button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+}
+
+.transaction-form button {
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+}
+
+.transaction-form button:hover {
+    background-color: #4cae4c;
+}
+
+.transaction-list li {
+    background-color: #555;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+    list-style-type: none;
+}
+
+.transaction-list li:nth-child(even) {
+    background-color: #666;
+}
