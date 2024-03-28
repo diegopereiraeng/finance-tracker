@@ -1,0 +1,5 @@
+name: <+service.name>
+image: <+artifacts.primary.image>
+vars:
+  - varName: REACT_APP_BACKEND_URL
+    varValue: "https://finance-tracker.harness-demo.site"
