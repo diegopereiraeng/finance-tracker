@@ -10,10 +10,10 @@ function HomePage() {
         category: '',
         date: new Date().toISOString().slice(0, 10), // Automatically set today's date
     });
-    const backendURL = "http://localhost:8080";
+    const backendURL = "http://finance-tracker.harness-demo.site";
 
     useEffect(() => {
-        axios.get(`${backendURL}/transactions`, { withCredentials: true }).then(response => {
+        axios.get(`${backendURL}/api/transactions`, { withCredentials: true }).then(response => {
             setTransactions(response.data);
         });
     }, []);
@@ -24,7 +24,7 @@ function HomePage() {
             alert("Please fill in all fields.");
             return;
         }
-        axios.post(`${backendURL}/transactions`, newTransaction, { withCredentials: true }).then(response => {
+        axios.post(`${backendURL}/api/transactions`, newTransaction, { withCredentials: true }).then(response => {
             axios.get(`${backendURL}/transactions`, { withCredentials: true }).then(response => {
                 setTransactions(response.data);
             });
