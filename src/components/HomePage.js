@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './HomePage.css'; // Assuming CSS is in HomePage.css
+import './HomePage.css'; // Make sure this CSS file exists and is correctly imported
 
 function HomePage() {
     const [transactions, setTransactions] = useState([]);
@@ -13,9 +13,11 @@ function HomePage() {
     const backendURL = "http://finance-tracker.harness-demo.site";
 
     useEffect(() => {
-        axios.get(`${backendURL}/api/transactions`, { withCredentials: true }).then(response => {
-            setTransactions(response.data);
-        });
+        axios.get(`${backendURL}/api/transactions`, { withCredentials: true })
+            .then(response => {
+                setTransactions(response.data);
+            })
+            .catch(error => console.error("Failed to fetch transactions:", error));
     }, []);
 
     const handleSubmit = (e) => {
@@ -24,19 +26,19 @@ function HomePage() {
             alert("Please fill in all fields.");
             return;
         }
-        axios.post(`${backendURL}/api/transactions`, newTransaction, { withCredentials: true }).then(response => {
-            axios.get(`${backendURL}/transactions`, { withCredentials: true }).then(response => {
+        axios.post(`${backendURL}/api/transactions`, newTransaction, { withCredentials: true })
+            .then(response => {
                 setTransactions(response.data);
-            });
-            setNewTransaction({ type: '', amount: '', category: '', date: new Date().toISOString().slice(0, 10) });
-        });
+                setNewTransaction({ type: '', amount: '', category: '', date: new Date().toISOString().slice(0, 10) }); // Reset the form
+            })
+            .catch(error => console.error("Failed to add transaction:", error));
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewTransaction(prevState => ({
             ...prevState,
-            [name]: name === 'amount' ? parseFloat(value) : value
+            [name]: name === 'amount' ? parseFloat(value) : value // Ensure amount is treated as a number
         }));
     };
 
